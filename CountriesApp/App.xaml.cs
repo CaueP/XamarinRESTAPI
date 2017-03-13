@@ -11,9 +11,14 @@ namespace CountriesApp
 			MainPage = new CountriesAppPage();
 		}
 
-		protected override void OnStart()
+		protected override async void OnStart()
 		{
 			// Handle when your app starts
+			var client = new RestClient();
+
+			var json = client.Serialize();
+
+			await MainPage.DisplayAlert("Json: ", json, "Cancel");
 		}
 
 		protected override void OnSleep()
