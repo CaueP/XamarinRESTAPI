@@ -4,21 +4,19 @@ namespace CountriesApp
 {
 	public partial class App : Application
 	{
+		private CountriesAppPage _mainPage; 
 		public App()
 		{
+			_mainPage = new CountriesAppPage();
+
 			InitializeComponent();
 
-			MainPage = new CountriesAppPage();
+			MainPage = _mainPage;
 		}
 
-		protected override async void OnStart()
+		protected override void OnStart()
 		{
-			// Handle when your app starts
-			var client = new RestClient();
-
-			var json = client.Serialize();
-
-			await MainPage.DisplayAlert("Json: ", json, "Cancel");
+			_mainPage.Load();
 		}
 
 		protected override void OnSleep()
